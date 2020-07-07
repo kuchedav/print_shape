@@ -14,6 +14,13 @@ def print_shape(elem1,level=0):
         [print_shape(i) for i in elem1_in]
 
 def print_level_type(input_elem,level):
+    # get shape
+    shape_out = ""
+    if isinstance(input_elem,list) or isinstance(input_elem,dict):
+        shape_out = str(len(input_elem))
+    elif "pandas" in str(type(input_elem)):
+        shape_out = str(input_elem.shape)
+    
     # create indentation
     level_indent = ""
     if level > 0:
@@ -23,9 +30,9 @@ def print_level_type(input_elem,level):
 
     # create color
     level_1_counter = 0
-    RGB = [(255,100,0),(0,200,100),(0,150,255),(255,255,0),(0,255,255),(255,0,255)]
+    RGB = [(200,100,0),(0,200,100),(0,150,200),(200,200,0),(0,200,200),(200,0,200)]
     fg.orange = Style(RgbFg(*RGB[level % len(RGB)]))
-    print_color = f"{fg.orange}{level_indent}{level}[{type_string}]{fg.rs}"
+    print_color = f"{fg.orange}{level_indent}{level}[{type_string}]{shape_out}{fg.rs}"
     level_1_counter += 1
     
     print(print_color)
