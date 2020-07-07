@@ -6,7 +6,7 @@ def print_shape(elem1,level=0):
     elif "pandas" in str(type(elem1)):
         print_level_type(elem1,level)
         if isinstance(elem1,pd.core.frame.DataFrame):
-            [print_level_type(i,level+1,j) for i,j in zip(elem1.columns,elem1.dtypes)]
+            [print_level_type(i,level+1,pandas_dtype=j) for i,j in zip(elem1.columns,elem1.dtypes)]
     elif(isinstance(elem1,list)):
         print_level_type(elem1,level)
         [print_shape(i,level+1) for i in elem1]
@@ -14,14 +14,20 @@ def print_shape(elem1,level=0):
         print_level_type(elem1,level)
         elem1_in = list(elem1.values())
         [print_shape(i,level+1) for i in elem1_in]
+    elif(isinstance(elem1,np.ndarray)):
+        print_level_type(elem1,level)
+    
+def get_shape(input_elem):
+    if isinstance(input_elem,list) or isinstance(input_elem,dict):
+        return str(len(input_elem))
+    elif "pandas" in str(type(input_elem)) or isinstance(input_elem,np.ndarray):
+        return str(input_elem.shape)
+    else:
+        return ""
 
 def print_level_type(input_elem,level,pandas_dtype = None):
     # get shape
-    shape_out = ""
-    if isinstance(input_elem,list) or isinstance(input_elem,dict):
-        shape_out = str(len(input_elem))
-    elif "pandas" in str(type(input_elem)):
-        shape_out = str(input_elem.shape)
+    shape_out = get_shape(input_elem)
     
     # create indentation
     level_indent = ""
