@@ -5,15 +5,16 @@ def print_shape(elem1,level=0):
         print_level_type(elem1,level)
     elif "pandas" in str(type(elem1)):
         print_level_type(elem1,level)
+        [print_level_type(i,level,True) for i in elem1.columns]
     elif(isinstance(elem1,list)):
         print_level_type(elem1,level)
         [print_shape(i,level+1) for i in elem1]
     elif(isinstance(elem1,dict)):
         print_level_type(elem1,level)
         elem1_in = list(elem1.values())
-        [print_shape(i) for i in elem1_in]
+        [print_shape(i,level+1) for i in elem1_in]
 
-def print_level_type(input_elem,level):
+def print_level_type(input_elem,level,pandas_column = False):
     # get shape
     shape_out = ""
     if isinstance(input_elem,list) or isinstance(input_elem,dict):
@@ -32,7 +33,16 @@ def print_level_type(input_elem,level):
     level_1_counter = 0
     RGB = [(200,100,0),(0,200,100),(0,150,200),(200,200,0),(0,200,200),(200,0,200)]
     fg.orange = Style(RgbFg(*RGB[level % len(RGB)]))
-    print_color = f"{fg.orange}{level_indent}{level}[{type_string}]{shape_out}{fg.rs}"
+
+    # if pandas columns are given
+    colum_name = ""
+    if pandas_column:
+        colum_name = input_elem
+        level = ""
+        level_indent += "__"
+
+    # create print statement
+    print_color = f"{fg.orange}{level_indent}{colum_name}{level}[{type_string}]{shape_out}{fg.rs}"
     level_1_counter += 1
     
     print(print_color)
