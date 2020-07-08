@@ -1,24 +1,29 @@
-from sty import fg, bg, ef, rs, Style, RgbFg
+from sty import fg, Style, RgbFg
+import numpy as np
+import pandas as pd
 
-def print_shape(elem1,level=0):
-    if isinstance(elem1, str) or isinstance(elem1, int) or isinstance(elem1, float):
-        print_level_type(elem1,level)
+def print_shape(elem1, print_elements = False, level = 0):
+    if isinstance(elem1, str) or isinstance(elem1, int) or isinstance(elem1, float) \
+        or isinstance(elem1, complex) or isinstance(elem1, bool):
+        if print_elements: print_level_type(elem1,level)
+        else: return
     elif "pandas" in str(type(elem1)):
         print_level_type(elem1,level)
         if isinstance(elem1,pd.core.frame.DataFrame):
-            [print_level_type(i,level+1,pandas_dtype=j) for i,j in zip(elem1.columns,elem1.dtypes)]
-    elif(isinstance(elem1,list)):
+            if print_elements: [print_level_type(i,level+1,pandas_dtype=j) for i,j in zip(elem1.columns,elem1.dtypes)]
+    elif(isinstance(elem1,list) or isinstance(elem1,tuple)):
         print_level_type(elem1,level)
-        [print_shape(i,level+1) for i in elem1]
+        [print_shape(i,print_elements,level+1) for i in elem1]
     elif(isinstance(elem1,dict)):
         print_level_type(elem1,level)
         elem1_in = list(elem1.values())
-        [print_shape(i,level+1) for i in elem1_in]
+        [print_shape(i,print_elements,level+1) for i in elem1_in]
     elif(isinstance(elem1,np.ndarray)):
         print_level_type(elem1,level)
     
 def get_shape(input_elem):
-    if isinstance(input_elem,list) or isinstance(input_elem,dict):
+    if isinstance(input_elem,list) or isinstance(input_elem,dict) or isinstance(input_elem,tuple) \
+        or isinstance(input_elem,set):
         return str(len(input_elem))
     elif "pandas" in str(type(input_elem)) or isinstance(input_elem,np.ndarray):
         return str(input_elem.shape)
@@ -65,7 +70,16 @@ if __name__=="__main__":
     # numpy data
     np_array = np.array([[1, 2], [3, 4]])
 
-    test1 = [{"a":1,"b":2}, 10, [1,2,[4,5,6,[1,2,3,["string","test",[1,[1,[1]]]]]]], df2, [s], np_array]
+    # complex numbers
+    complex_n = 2+3j
+    # boolean
+    boolean_var = True
+    # tuple
+    tuple_var = (1,2,3,4)
+    # set
+    set_var = set((1,2,4,5,624,4357,3457,537))
+
+    test1 = [{"a":1,"b":2}, 10, [1,2,[4,5,6,[1,2,3,["string","test",[1,[1,[1]]]]]]], df2, [s], np_array, complex_n, boolean_var, tuple_var]
     
-    out = print_shape(test1)
+    out = print_shape(test1, print_elements = False)
     print(out)
