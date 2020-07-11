@@ -3,29 +3,27 @@ import numpy as np
 import pandas as pd
 
 def print_shape(elem1, print_elements = False, level = 0):
-    if isinstance(elem1, str) or isinstance(elem1, int) or isinstance(elem1, float) \
-        or isinstance(elem1, complex) or isinstance(elem1, bool):
+    if isinstance(elem1, (str,int,float,bool,complex)):
         if print_elements: print_level_type(elem1,level)
         else: return
-    elif "pandas" in str(type(elem1)):
+    elif isinstance(elem1,(pd.core.frame.DataFrame,pd.core.series.Series)):
         print_level_type(elem1,level)
         if isinstance(elem1,pd.core.frame.DataFrame):
             if print_elements: [print_level_type(i,level+1,pandas_dtype=j) for i,j in zip(elem1.columns,elem1.dtypes)]
-    elif(isinstance(elem1,list) or isinstance(elem1,tuple)):
+    elif isinstance(elem1,(list,tuple,range,set)):
         print_level_type(elem1,level)
         [print_shape(i,print_elements,level+1) for i in elem1]
-    elif(isinstance(elem1,dict)):
+    elif isinstance(elem1,dict):
         print_level_type(elem1,level)
         elem1_in = list(elem1.values())
         [print_shape(i,print_elements,level+1) for i in elem1_in]
-    elif(isinstance(elem1,np.ndarray)):
+    elif isinstance(elem1,np.ndarray):
         print_level_type(elem1,level)
     
 def get_shape(input_elem):
-    if isinstance(input_elem,list) or isinstance(input_elem,dict) or isinstance(input_elem,tuple) \
-        or isinstance(input_elem,set):
+    if isinstance(input_elem,(list,dict,tuple,set,range)):
         return str(len(input_elem))
-    elif "pandas" in str(type(input_elem)) or isinstance(input_elem,np.ndarray):
+    elif isinstance(input_elem,(pd.core.frame.DataFrame,pd.core.series.Series,np.ndarray)):
         return str(input_elem.shape)
     else:
         return ""
@@ -43,7 +41,7 @@ def print_level_type(input_elem,level,pandas_dtype = None):
 
     # create color
     level_1_counter = 0
-    RGB = [(200,100,0),(0,200,100),(0,150,200),(200,200,0),(0,200,200),(200,0,200)]
+    RGB = [(200,50,0),(0,180,100),(0,150,200),(200,200,0),(0,200,200),(150,100,200)]
     fg.orange = Style(RgbFg(*RGB[level % len(RGB)]))
 
     # if pandas columns are given
@@ -78,8 +76,10 @@ if __name__=="__main__":
     tuple_var = (1,2,3,4)
     # set
     set_var = set((1,2,4,5,624,4357,3457,537))
+    # range
+    range_var = range(0,5)
 
-    test1 = [{"a":1,"b":2}, 10, [1,2,[4,5,6,[1,2,3,["string","test",[1,[1,[1]]]]]]], df2, [s], np_array, complex_n, boolean_var, tuple_var]
+    test1 = [{"a":1,"b":2}, 10, [1,2,[4,5,6,[1,2,3,["string","test",[1,[1,[1]]]]]]], df2, [s], np_array, complex_n, boolean_var, tuple_var, set_var, range_var]
     
     out = print_shape(test1, print_elements = False)
     print(out)
