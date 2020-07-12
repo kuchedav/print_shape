@@ -1,0 +1,13 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "print_structure"
+author = "David Kuchelmeister"
+author-email = "kuchelmeister.david@gmail.com"
+home-page = "https://github.com/kuchedav/print_structure"
+classifiers = ["License :: OSI Approved :: MIT License"]
+requires = 
+	pandas
+	numpy
