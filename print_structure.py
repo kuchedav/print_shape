@@ -1,23 +1,29 @@
+"""
+print_structure prints out the structure of any arbitrary python object.
+"""
+
+__versio__ = "0.0.2"
+
 import numpy as np
 import pandas as pd
 
-def print_str(object, print_elements = False, level = 0):
-    if isinstance(elem1, (str,int,float,bool,complex,bytes,memoryview)):
-        if print_elements: print_level_type(elem1,level)
+def print_str(object_atr, print_elements = False, level = 0):
+    if isinstance(object_atr, (str,int,float,bool,complex,bytes,memoryview)):
+        if print_elements: print_level_type(object_atr,level)
         else: return
-    elif isinstance(elem1,(pd.core.frame.DataFrame,pd.core.series.Series)):
-        print_level_type(elem1,level)
-        if isinstance(elem1,pd.core.frame.DataFrame):
-            if print_elements: [print_level_type(i,level+1,pandas_dtype=j) for i,j in zip(elem1.columns,elem1.dtypes)]
-    elif isinstance(elem1,(list,tuple,range,set,frozenset,bytearray)):
-        print_level_type(elem1,level)
-        [print_str(i,print_elements,level+1) for i in elem1]
-    elif isinstance(elem1,dict):
-        print_level_type(elem1,level)
-        elem1_in = list(elem1.values())
+    elif isinstance(object_atr,(pd.core.frame.DataFrame,pd.core.series.Series)):
+        print_level_type(object_atr,level)
+        if isinstance(object_atr,pd.core.frame.DataFrame):
+            if print_elements: [print_level_type(i,level+1,pandas_dtype=j) for i,j in zip(object_atr.columns,object_atr.dtypes)]
+    elif isinstance(object_atr,(list,tuple,range,set,frozenset,bytearray)):
+        print_level_type(object_atr,level)
+        [print_str(i,print_elements,level+1) for i in object_atr]
+    elif isinstance(object_atr,dict):
+        print_level_type(object_atr,level)
+        elem1_in = list(object_atr.values())
         [print_str(i,print_elements,level+1) for i in elem1_in]
-    elif isinstance(elem1,np.ndarray):
-        print_level_type(elem1,level)
+    elif isinstance(object_atr,np.ndarray):
+        print_level_type(object_atr,level)
     
 def get_shape(input_elem) -> str:
     if isinstance(input_elem,(list,dict,tuple,set,frozenset,range,bytearray)):
@@ -84,5 +90,5 @@ if __name__=="__main__":
     test1 = [{"a":1,"b":2}, 10, [1,2,[4,5,6,[1,3,["string","test",[1,[1,[1]]]]]]], df2, [s], np_array, complex_n, \
         boolean_var, tuple_var, set_var, range_var, simple_bytes_string, bytes_arr, mem_var]
     
-    out = print_str(object = test1)
+    out = print_str(object_atr = test1)
     print(out)
