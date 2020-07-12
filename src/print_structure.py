@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-def print_str(elem1, print_elements = False, level = 0):
+def print_str(object, print_elements = False, level = 0):
     if isinstance(elem1, (str,int,float,bool,complex,bytes,memoryview)):
         if print_elements: print_level_type(elem1,level)
         else: return
@@ -84,5 +84,5 @@ if __name__=="__main__":
     test1 = [{"a":1,"b":2}, 10, [1,2,[4,5,6,[1,3,["string","test",[1,[1,[1]]]]]]], df2, [s], np_array, complex_n, \
         boolean_var, tuple_var, set_var, range_var, simple_bytes_string, bytes_arr, mem_var]
     
-    out = print_str(test1)
+    out = print_str(object = test1)
     print(out)

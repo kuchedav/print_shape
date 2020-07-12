@@ -1,32 +1,35 @@
-# for_long
+# print_structure
 
 ## Description
-for_long facilitates iterating over long running loops.
-
-following functionalities are implemented:
-- save progress in folder
-- start from last saved progress
-- run over combination of input lists
-- get show loading bar
+Print structure of any arbitrary python object.
 
 ## Installation
 
 Run the following to install:
 ```
-pip install forlong
+pip install print_structure
 ```
 
 ## Attributes
-iter_fun:       function to iterate over
-iter_attr:      a dictionary of all attributes needed for iter_fun input.
-                => {"attribute name 1":attribute_values1, "attribute name 2":attribute_values2, ...}
-                for the loop to create a permutation you can enter one or more attributes as a list.
-                => {"attribute name 1":[1,2,3,4], "attribute name 2":["EU","CH","AM"], ...}
-                attributes with lists can be combined with attributes with a single value.
-save_every_n:   save my progress every n iterations
-path:           save my files under this path
+object : any type of python object
+
+## print out
+Structure of object.
+
+Example:
+
+|___0 [list] (14)
+  |___1 [dict] (2)
+  |___1 [list] (3)
+  |___1 [pandas.core.frame.DataFrame] (3, 3)
+  |___1 [list] (1)
+    |___2 [pandas.core.series.Series] (4,)
+  |___1 [numpy.ndarray] (2, 2)
 
 ## Usage
 ```
+from print_structure import str
 
+list = [1,2,3,["a","b","c"]]
+str(object = list)
 ```
