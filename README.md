@@ -36,6 +36,23 @@ output
 |___0 [list] (4)
   |___1 [list] (4)
 ```
+There is as well the possibility to look into every element by using "print_elements = True".
+Careful with large object!
+```python
+print_str(object_atr = test_obj, print_elements = True)
+```
+output
+```python
+|___0 [list] (4)
+  |___1 [int] 
+  |___1 [int] 
+  |___1 [int] 
+  |___1 [list] (4)
+    |___2 [str] 
+    |___2 [str] 
+    |___2 [bytes] 
+    |___2 [complex] 
+ ```
 
 
 ### large example
