@@ -18,8 +18,13 @@ Structure of object.
 
 ## Usage
 ```
-from print_structure import str
+from print_structure import print_str
 
 list = [1,2,3,["a","b","c"]]
-str(object = list)
+print_str(list)
+```
+output
+```
+|___0 [list] (4)
+  |___1 [list] (3)
 ```
