@@ -17,42 +17,58 @@ object : any type of python object
 Structure of object.
 
 ## Usage
+
+### small example
+```
+test_obj = [1,2,3,["a","b",b"bytes",2+3j]]
+
+print_str(object_atr = test_obj)
+```
+output
+```
+|___0 [list] (4)
+  |___1 [list] (4)
+```
+
+
+### large example
+
 ```
 from print_structure import print_str
-  import pandas as pd
-  import numpy as np
+import pandas as pd
+import numpy as np
 
-  # pandas data
-  df2 = pd.DataFrame(np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]),columns=['a', 'b', 'c'])
-  data = np.array(['a','b','c','d'])
-  s = pd.Series(data)
+# pandas data
+df2 = pd.DataFrame(np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]),columns=['a', 'b', 'c'])
+data = np.array(['a','b','c','d'])
+s = pd.Series(data)
 
-  # numpy data
-  np_array = np.array([[1, 2], [3, 4]])
+# numpy data
+np_array = np.array([[1, 2], [3, 4]])
 
-  # dict
-  dict_varm = {"a":1,"b":2}
-  # complex numbers
-  complex_n = 2+3j
-  # boolean
-  boolean_var = True
-  # tuple
-  tuple_var = (1,3,4)
-  # set
-  set_var = set((1,2,4))
-  # range
-  range_var = range(0,3)
+# dict
+dict_varm = {"a":1,"b":2}
+# complex numbers
+complex_n = 2+3j
+# boolean
+boolean_var = True
+# tuple
+tuple_var = (1,3,4)
+# set
+set_var = set((1,2,4))
+# range
+range_var = range(0,3)
 
-  ### bytes
-  simple_bytes_string = b"test_test"
-  string = "Pyth"
-  bytes_arr = bytearray(string, 'utf-8')
-  mem_var = memoryview(simple_bytes_string)
+### bytes
+simple_bytes_string = b"test_test"
+string = "Pyth"
+bytes_arr = bytearray(string, 'utf-8')
+mem_var = memoryview(simple_bytes_string)
 
-  test_obj = [df2, [s], np_array, complex_n, boolean_var, tuple_var, set_var, range_var, \
-          dict_varm, [simple_bytes_string, [bytes_arr, mem_var]]]
+test_obj = [df2, [s], np_array, complex_n, boolean_var, tuple_var, set_var, range_var, \
+            dict_varm, [simple_bytes_string, [bytes_arr, mem_var]]]
 
-  print_str(object_atr = test_obj)
+print_str(object_atr = test_obj)
 ```
 output
 ```
