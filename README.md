@@ -16,7 +16,7 @@ object : any type of python object
 ## Output
 There is no output for this function. It only prints the information in the terminal.
 
-One line of printout contains follwing information:
+One line of print-out contains follwing information:
 ```
 |___<level> [<obj_type>] (<obj_shape>)
 ```
@@ -31,7 +31,7 @@ test_obj = [1,2,3,["a","b",b"bytes",2+3j]]
 
 print_str(object_atr = test_obj)
 ```
-output
+print-out
 ```python
 |___0 [list] (4)
   |___1 [list] (4)
@@ -41,7 +41,7 @@ Careful with large object!
 ```python
 print_str(object_atr = test_obj, print_elements = True)
 ```
-output
+print-out
 ```python
 |___0 [list] (4)
   |___1 [int] 
@@ -94,7 +94,7 @@ test_obj = [df2, [s], np_array, complex_n, boolean_var, tuple_var, set_var, rang
 
 print_str(object_atr = test_obj)
 ```
-output
+print-out
 ```python
 |___0 [list] (10)
   |___1 [pandas.core.frame.DataFrame] (3, 3)
