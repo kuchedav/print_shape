@@ -2,7 +2,7 @@
 print_structure prints out the structure of any arbitrary python object.
 """
 
-__version__ = "0.0.3"
+__version__ = "0.0.4"
 
 import numpy as np
 import pandas as pd
@@ -65,10 +65,16 @@ if __name__=="__main__":
     import numpy as np
     
     ### small example
-
     test_obj = [1,2,3,["a","b",b"bytes",2+3j]]
 
     print_str(object_atr = test_obj)
+
+
+    ### small example elements on
+    test_obj = [1,2,3,["a","b",b"bytes",2+3j]]
+
+    print_str(object_atr = test_obj, print_elements = True)
+
 
     ### large example
 
