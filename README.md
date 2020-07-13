@@ -13,8 +13,6 @@ pip install print_structure
 ## Attributes
 object : any type of python object
 
-## print out
-Structure of object.
 
 ## Usage
 
