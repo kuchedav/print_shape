@@ -8,6 +8,4 @@ author = "David Kuchelmeister"
 author-email = "kuchelmeister.david@gmail.com"
 home-page = "https://github.com/kuchedav/print_structure"
 classifiers = ["License :: OSI Approved :: MIT License"]
-requires = 
-	pandas
-	numpy
+description-file = "README.md"

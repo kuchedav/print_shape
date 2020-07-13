@@ -2,12 +2,17 @@
 print_structure prints out the structure of any arbitrary python object.
 """
 
-__versio__ = "0.0.2"
+__version__ = "0.0.3"
 
 import numpy as np
 import pandas as pd
 
 def print_str(object_atr, print_elements = False, level = 0):
+    """
+    print_str is the wrapper command which recoursively calles itself,
+        as well as the print function.
+    """
+
     if isinstance(object_atr, (str,int,float,bool,complex,bytes,memoryview)):
         if print_elements: print_level_type(object_atr,level)
         else: return
@@ -59,6 +64,14 @@ if __name__=="__main__":
     import pandas as pd
     import numpy as np
     
+    ### small example
+
+    test_obj = [1,2,3,["a","b",b"bytes",2+3j]]
+
+    print_str(object_atr = test_obj)
+
+    ### large example
+
     # pandas data
     df2 = pd.DataFrame(np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]]),columns=['a', 'b', 'c'])
     data = np.array(['a','b','c','d'])
@@ -67,6 +80,8 @@ if __name__=="__main__":
     # numpy data
     np_array = np.array([[1, 2], [3, 4]])
 
+    # dict
+    dict_varm = {"a":1,"b":2}
     # complex numbers
     complex_n = 2+3j
     # boolean
@@ -80,15 +95,11 @@ if __name__=="__main__":
     
     ### bytes
     simple_bytes_string = b"test_test"
-
     string = "Pyth"
     bytes_arr = bytearray(string, 'utf-8')
-
     mem_var = memoryview(simple_bytes_string)
 
-
-    test1 = [{"a":1,"b":2}, 10, [1,2,[4,5,6,[1,3,["string","test",[1,[1,[1]]]]]]], df2, [s], np_array, complex_n, \
-        boolean_var, tuple_var, set_var, range_var, simple_bytes_string, bytes_arr, mem_var]
+    test_obj = [df2, [s], np_array, complex_n, boolean_var, tuple_var, set_var, range_var, \
+            dict_varm, [simple_bytes_string, [bytes_arr, mem_var]]]
     
-    out = print_str(object_atr = test1)
-    print(out)
+    print_str(object_atr = test_obj)
