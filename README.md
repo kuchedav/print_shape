@@ -20,6 +20,7 @@ Structure of object.
 
 ### small example
 ```
+from print_structure import print_str
 test_obj = [1,2,3,["a","b",b"bytes",2+3j]]
 
 print_str(object_atr = test_obj)
