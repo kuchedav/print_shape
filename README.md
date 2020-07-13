@@ -13,6 +13,14 @@ pip install print_structure
 ## Attributes
 object : any type of python object
 
+## Output
+There is no output for this function. It only prints the information in the terminal.
+
+One line of printout contains follwing information:
+```
+|___<level> [<obj_type>] (<obj_shape>)
+```
+
 
 ## Usage
 
