@@ -1,7 +1,9 @@
 # print_structure
 
 ## Description
-Print structure of any arbitrary python object.
+Print structure of python object.
+Most python object types are supported.
+Please let me know if you would like some types added.
 
 ## Installation
 
